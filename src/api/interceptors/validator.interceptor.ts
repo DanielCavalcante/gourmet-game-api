@@ -20,6 +20,7 @@ export class ValidatorInterceptor implements NestInterceptor {
   ): Observable<any> {
     const body = context.switchToHttp().getRequest().body;
     const valid = this.contract.validate(body);
+    console.log(this.contract.errors);
     if (!valid)
       throw new HttpException(
         new Result(
